@@ -1,9 +1,6 @@
-FROM scratch
+FROM debian:stretch-20170723
+MAINTAINER Marvin W <marvin@eterna.io>
 
-MAINTAINER Marvin W <eterna-urbo@larma.de>
-
-# 2016-12-13 debootstraps of stretch (via official image)
-ADD rootfs.tar.xz /
 COPY sources.list /etc/apt/sources.list
 
 RUN echo 'Acquire::Check-Valid-Until "0";' > /etc/apt/apt.conf.d/10no-check-valid-until
@@ -11,6 +8,7 @@ RUN echo "dash dash/sh boolean false" | debconf-set-selections && \
     dpkg-reconfigure -p critical dash
 
 RUN apt-get update
+RUN apt-get upgrade
 RUN apt-get install -y bsdmainutils
 RUN apt-get install -y build-essential
 RUN apt-get install -y openjdk-8-jdk
@@ -32,4 +30,3 @@ ENV CCACHE_DIR /tmp/ccache
 
 COPY docker-entrypoint.sh /root/docker-entrypoint.sh
 ENTRYPOINT ["/root/docker-entrypoint.sh"]
-
