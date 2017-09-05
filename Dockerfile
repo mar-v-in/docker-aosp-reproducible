@@ -15,6 +15,7 @@ RUN apt-get install -y openjdk-8-jdk
 RUN apt-get install -y lib32ncurses5-dev lib32z1-dev libesd0-dev libncurses5-dev libsdl1.2-dev libwxgtk3.0-dev libxml2-utils zlib1g-dev
 RUN apt-get install -y bison flex g++-multilib gcc-multilib gperf pngcrush
 RUN apt-get install -y bc curl git gnupg lzop sudo procps schedtool xsltproc zip
+RUN apt-get install -y python
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ADD https://commondatastorage.googleapis.com/git-repo-downloads/repo /usr/local/bin/
